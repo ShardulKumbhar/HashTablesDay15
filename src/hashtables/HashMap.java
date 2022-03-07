@@ -2,42 +2,78 @@ package hashtables;
 
 import java.util.ArrayList;
 
-public class HashMap<K,V> {
-	
-	private final int numberOfBucket;
+
+public class HashMap<K, V> {
+
+	/**
+	 * The sizeOfArray is the total size of the array And we have created the
+	 * arrayList of LinkedList
+	 */
+	private final int sizeOfArray;
 	ArrayList<LinkedList<K>> arrayList;
 
 	public HashMap() {
+		/**
+		 * Size of array defined 10 New ArrayList with null value assigned
+		 */
 
-		numberOfBucket = 10;
+		sizeOfArray = 10;
 		arrayList = new ArrayList<>();
-		for (int i = 0; i < numberOfBucket; i++) {
+		for (int i = 0; i < sizeOfArray; i++) {
 			arrayList.add(null);
 		}
 	}
 
+	/**
+	 * [1]- Method to find the value of a specific key
+	 *  1. Find the indexNumber which
+	 * will range in between the size of ArrayList. 
+	 * 2. Pass the index number to the
+	 * arrayList to get the array's LinkedList & save this to the variable
+	 * LinkedList 
+	 * 3. If LinkedList null return null
+	 *  4. If not search the key in the
+	 * LinkedList and save the value and key on the myMapNode 
+	 * 5. If mapNode null
+	 * then return null if not return value
+	 * 
+	 * @param key - key param
+	 * @return - Value assigned with key
+	 */
 	public V get(K key) {
 
-		int indexNumber = this.getBucketNumber(key);
+		int indexNumber = this.getIndexNumber(key);
 		LinkedList<K> linkedList = arrayList.get(indexNumber);
 
 		if (linkedList == null) {
 			return null;
 		}
-		
 		MyMapNode<K, V> mapNode = (MyMapNode<K, V>) linkedList.search(key);
 		return mapNode == null ? null : mapNode.getValue();
 	}
 
-	private int getBucketNumber(K key) {
+	/**
+	 * Method to find index of the arrayList Get hashcode int from Math.abs function
+	 * than mod the hashCode with the size of the arrayList to get a no. in the
+	 * range of arrayList
+	 * 
+	 * @param key - Key param to find the index
+	 * @return - Index value
+	 */
+	private int getIndexNumber(K key) {
 
 		int hashCode = Math.abs(key.hashCode());
-		return hashCode % this.numberOfBucket;
+		return hashCode % this.sizeOfArray;
 	}
 
+	/**
+	 * created myhod to add
+	 * @param key
+	 * @param value
+	 */
 	public void add(K key, V value) {
 
-		int index = this.getBucketNumber(key);
+		int index = this.getIndexNumber(key);
 		LinkedList<K> linkedList = this.arrayList.get(index);
 		if (linkedList == null) {
 			linkedList = new LinkedList<>();

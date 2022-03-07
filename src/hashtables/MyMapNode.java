@@ -1,11 +1,16 @@
 package hashtables;
 
-public class MyMapNode<K,V> implements Node<K> {
+public class MyMapNode<K, V> implements Node<K> {
 	K key;
 	V value;
-    Node<K> next;
-   
-    //constructor
+	Node<K> next;
+
+	/**
+	 * constructor
+	 * 
+	 * @param key   - generic type key
+	 * @param value - generic type value assigned to key
+	 */
 	public MyMapNode(K key, V value) {
 		super();
 		this.key = key;
@@ -13,6 +18,9 @@ public class MyMapNode<K,V> implements Node<K> {
 		this.next = null;
 	}
 
+	/**
+	 * getters and setters
+	 */
 	public K getKey() {
 		return key;
 	}
@@ -28,7 +36,7 @@ public class MyMapNode<K,V> implements Node<K> {
 	public void setValue(V value) {
 		this.value = value;
 	}
-    
+
 	@Override
 	public Node<K> getNext() {
 		return next;
@@ -36,12 +44,15 @@ public class MyMapNode<K,V> implements Node<K> {
 
 	@Override
 	public void setNext(Node<K> next) {
-		
+
 		this.next = next;
-    
+
 	}
 
 	@Override
+	/**
+	 * Method to display the output of the MapNode
+	 */
 	public String toString() {
 		StringBuilder myMapNodeString = new StringBuilder();
 		myMapNodeString.append("MyMapNode{" + "K=").append(key).append(" V=").append(value).append('}');
@@ -49,4 +60,5 @@ public class MyMapNode<K,V> implements Node<K> {
 			myMapNodeString.append("->").append(next);
 		return myMapNodeString.toString();
 	}
+
 }

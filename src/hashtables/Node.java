@@ -1,6 +1,9 @@
 package hashtables;
 
+
+
 public interface Node<K> {
+
 	K getKey();
 
 	void setKey(K key);
@@ -8,4 +11,5 @@ public interface Node<K> {
 	void setNext(Node<K> next);
 
 	Node<K> getNext();
+
 }
